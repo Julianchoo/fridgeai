@@ -6,7 +6,7 @@ import { eq, and } from "drizzle-orm";
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // Check authentication
@@ -21,7 +21,8 @@ export async function GET(
       );
     }
 
-    const recipeId = parseInt(params.id);
+    const { id } = await params;
+    const recipeId = parseInt(id);
     
     if (isNaN(recipeId)) {
       return NextResponse.json(
@@ -61,7 +62,7 @@ export async function GET(
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // Check authentication
@@ -76,7 +77,8 @@ export async function DELETE(
       );
     }
 
-    const recipeId = parseInt(params.id);
+    const { id } = await params;
+    const recipeId = parseInt(id);
     
     if (isNaN(recipeId)) {
       return NextResponse.json(
