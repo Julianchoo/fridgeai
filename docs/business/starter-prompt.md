@@ -63,7 +63,36 @@ The project already includes several shadcn/ui components (button, dialog, avata
 
 ## What I Want to Build
 
-Basic todo list app with the ability for users to add, remove, update, complete and view todos.
+**FridgeAI** - A web app that lets users upload a picture of their fridge and an AI will automatically process the ingredients and return them a detailed recipe of a dish they can cook with the observed ingredients.
+
+### Core Features:
+
+**Recipe Generation:**
+- AI automatically identifies ingredients from fridge photos (no manual confirmation needed)
+- Users can specify cuisine style (free text field with placeholder suggestions)
+- Users can specify maximum cooking time (free text field with placeholder guidance)
+- Recipes include comprehensive details: ingredients with portion sizes, step-by-step instructions, nutritional values, cooking time, difficulty level, and an AI-generated picture of the finished dish
+- Generate new recipes even if the same photo is uploaded multiple times
+
+**User Experience:**
+- Users must be logged in to upload pictures and receive recipes
+- Store both original fridge images and AI-generated finished dish photos
+- AI-generated dish images are created immediately with each recipe
+
+**Navigation Structure:**
+- **Home:** Simple landing page explaining the app
+- **My Recipes:** Two sections - "Add New" upload form at top, followed by filterable visualization of past recipes below
+- **Profile:** User settings and account management
+
+**Dashboard Features:**
+- Simple visualization of past recipes (start with basic filtering by existing fields/attributes)
+- Filter by cuisine, cooking time, difficulty, date created, etc.
+
+**Sharing Options:**
+- Copy shareable link to recipe
+- Email recipe to contacts
+- Export recipe as PDF for download/printing
+
 
 ## Request
 

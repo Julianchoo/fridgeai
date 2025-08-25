@@ -16,9 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Agentic Coding Boilerplate",
+  title: "FridgeAI - Turn Your Fridge Into Delicious Recipes",
   description:
-    "Complete agentic coding boilerplate with authentication, database, AI integration, and modern tooling - perfect for building AI-powered applications and autonomous agents by Leon van Zyl",
+    "Upload a photo of your fridge and let AI create personalized recipes with the ingredients you already have. No more food waste, just great meals.",
 };
 
 export default function RootLayout({
