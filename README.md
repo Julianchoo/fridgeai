@@ -232,3 +232,4 @@ If you encounter any issues:
 ---
 
 **Happy coding! 🚀**
+# FridgeAI deployment fix
