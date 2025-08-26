@@ -1,235 +1,146 @@
-# Agentic Coding Boilerplate
+# FridgeAI
 
-A complete agentic coding boilerplate with authentication, PostgreSQL database, AI chat functionality, and modern UI components - perfect for building AI-powered applications and autonomous agents.
+An AI-powered recipe generation application that transforms your fridge contents into delicious, personalized recipes. Simply upload a photo of your fridge and let AI create recipes with the ingredients you already have.
 
 ## 🚀 Features
 
-- **🔐 Authentication**: Better Auth with Google OAuth integration
-- **🗃️ Database**: Drizzle ORM with PostgreSQL
-- **🤖 AI Integration**: Vercel AI SDK with OpenAI support
-- **🎨 UI Components**: shadcn/ui with Tailwind CSS
-- **⚡ Modern Stack**: Next.js 15, React 19, TypeScript
-- **📱 Responsive**: Mobile-first design approach
-
-## 🎥 Video Tutorial
-
-Watch the complete walkthrough of this agentic coding template:
-
-[![Agentic Coding Boilerplate Tutorial](https://img.youtube.com/vi/T0zFZsr_d0Q/maxresdefault.jpg)](https://youtu.be/T0zFZsr_d0Q)
-
-<a href="https://youtu.be/T0zFZsr_d0Q" target="_blank" rel="noopener noreferrer">🔗 Watch on YouTube</a>
-
-## ☕ Support This Project
-
-If this boilerplate helped you build something awesome, consider buying me a coffee!
-
-[![Buy me a coffee](https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/leonvanzyl)
-
-## 📋 Prerequisites
-
-Before you begin, ensure you have the following installed on your machine:
-
-- **Node.js**: Version 18.0 or higher (<a href="https://nodejs.org/" target="_blank">Download here</a>)
-- **Git**: For cloning the repository (<a href="https://git-scm.com/" target="_blank">Download here</a>)
-- **PostgreSQL**: Either locally installed or access to a hosted service like Vercel Postgres
+- **📷 Photo Upload**: Take or upload photos of your fridge contents
+- **🤖 AI Recipe Generation**: Get personalized recipes based on available ingredients
+- **🔐 User Authentication**: Secure login with Google OAuth
+- **📱 Responsive Design**: Works seamlessly on desktop and mobile
+- **⚡ Modern Tech Stack**: Built with Next.js 15, React 19, and TypeScript
+- **🗃️ Database Storage**: PostgreSQL with Drizzle ORM for recipe and user data
 
 ## 🛠️ Quick Setup
 
-### 1. Clone or Download the Repository
+### Prerequisites
 
-**Option A: Clone with Git**
+- **Node.js**: Version 18.0 or higher
+- **PostgreSQL**: Database (local or hosted)
+- **OpenAI API Key**: For AI recipe generation
 
-```bash
-git clone https://github.com/leonvanzyl/agentic-coding-starter-kit.git
-cd agentic-coding-starter-kit
-```
+### Installation
 
-**Option B: Download ZIP**
-Download the repository as a ZIP file and extract it to your desired location.
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Julianchoo/fridgeai.git
+   cd fridgeai
+   ```
 
-### 2. Install Dependencies
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-```bash
-npm install
-```
+3. **Environment Setup**
+   
+   Copy the example environment file and fill in your variables:
+   ```bash
+   cp env.example .env
+   ```
 
-### 3. Environment Setup
+   Required environment variables:
+   ```env
+   # Database
+   POSTGRES_URL="postgresql://username:password@localhost:5432/fridgeai"
 
-Copy the example environment file:
+   # Authentication
+   BETTER_AUTH_SECRET="your-random-32-character-secret-key"
 
-```bash
-cp env.example .env
-```
+   # Google OAuth
+   GOOGLE_CLIENT_ID="your-google-client-id"
+   GOOGLE_CLIENT_SECRET="your-google-client-secret"
 
-Fill in your environment variables in the `.env` file:
+   # AI Integration
+   OPENAI_API_KEY="sk-your-openai-api-key"
+   OPENAI_MODEL="gpt-4o-mini"
 
-```env
-# Database
-POSTGRES_URL="postgresql://username:password@localhost:5432/your_database_name"
+   # App URL
+   NEXT_PUBLIC_APP_URL="http://localhost:3000"
+   ```
 
-# Authentication - Better Auth
-BETTER_AUTH_SECRET="your-random-32-character-secret-key-here"
+4. **Database Setup**
+   ```bash
+   npm run db:generate
+   npm run db:migrate
+   ```
 
-# Google OAuth (Get from Google Cloud Console)
-GOOGLE_CLIENT_ID="your-google-client-id"
-GOOGLE_CLIENT_SECRET="your-google-client-secret"
+5. **Start Development Server**
+   ```bash
+   npm run dev
+   ```
 
-# AI Integration (Optional - for chat functionality)
-OPENAI_API_KEY="sk-your-openai-api-key-here"
-OPENAI_MODEL="gpt-5-mini"
+   Your application will be available at [http://localhost:3000](http://localhost:3000)
 
-# App URL (for production deployments)
-NEXT_PUBLIC_APP_URL="http://localhost:3000"
-```
+## 📱 How It Works
 
-### 4. Database Setup
+1. **Upload Photo**: Take or upload a photo of your fridge contents
+2. **AI Analysis**: Our AI identifies ingredients from your photo
+3. **Recipe Generation**: Get personalized recipes based on available ingredients
+4. **Cook & Enjoy**: Follow the generated recipes and reduce food waste
 
-Generate and run database migrations:
+## 🏗️ Tech Stack
 
-```bash
-npm run db:generate
-npm run db:migrate
-```
-
-### 5. Start the Development Server
-
-```bash
-npm run dev
-```
-
-Your application will be available at [http://localhost:3000](http://localhost:3000)
-
-## ⚙️ Service Configuration
-
-### PostgreSQL Database on Vercel
-
-1. Go to <a href="https://vercel.com/dashboard" target="_blank">Vercel Dashboard</a>
-2. Navigate to the **Storage** tab
-3. Click **Create** → **Postgres**
-4. Choose your database name and region
-5. Copy the `POSTGRES_URL` from the `.env.local` tab
-6. Add it to your `.env` file
-
-### Google OAuth Credentials
-
-1. Go to <a href="https://console.cloud.google.com/" target="_blank">Google Cloud Console</a>
-2. Create a new project or select an existing one
-3. Navigate to **Credentials** → **Create Credentials** → **OAuth 2.0 Client ID**
-4. Set application type to **Web application**
-5. Add authorized redirect URIs:
-   - `http://localhost:3000/api/auth/callback/google` (development)
-   - `https://yourdomain.com/api/auth/callback/google` (production)
-6. Copy the **Client ID** and **Client Secret** to your `.env` file
-
-### OpenAI API Key
-
-1. Go to <a href="https://platform.openai.com/dashboard" target="_blank">OpenAI Platform</a>
-2. Navigate to **API Keys** in the sidebar
-3. Click **Create new secret key**
-4. Give it a name and copy the key
-5. Add it to your `.env` file as `OPENAI_API_KEY`
-
-## 🗂️ Project Structure
-
-```
-src/
-├── app/                    # Next.js app directory
-│   ├── api/               # API routes
-│   │   ├── auth/          # Authentication endpoints
-│   │   └── chat/          # AI chat endpoint
-│   ├── chat/              # AI chat page
-│   ├── dashboard/         # User dashboard
-│   └── page.tsx           # Home page
-├── components/            # React components
-│   ├── auth/             # Authentication components
-│   └── ui/               # shadcn/ui components
-└── lib/                  # Utilities and configurations
-    ├── auth.ts           # Better Auth configuration
-    ├── auth-client.ts    # Client-side auth utilities
-    ├── db.ts             # Database connection
-    ├── schema.ts         # Database schema
-    └── utils.ts          # General utilities
-```
+- **Frontend**: Next.js 15, React 19, TypeScript
+- **Styling**: Tailwind CSS, shadcn/ui components
+- **Database**: PostgreSQL with Drizzle ORM
+- **Authentication**: Better Auth with Google OAuth
+- **AI Integration**: OpenAI API with Vercel AI SDK
+- **Image Processing**: Vercel Blob for photo storage
 
 ## 🔧 Available Scripts
 
 ```bash
-npm run dev          # Start development server with Turbopack
+npm run dev          # Start development server
 npm run build        # Build for production
 npm run start        # Start production server
 npm run lint         # Run ESLint
+npm run typecheck    # Run TypeScript type checking
 npm run db:generate  # Generate database migrations
 npm run db:migrate   # Run database migrations
-npm run db:push      # Push schema changes to database
+npm run db:push      # Push schema changes
 npm run db:studio    # Open Drizzle Studio (database GUI)
 npm run db:dev       # Push schema for development
-npm run db:reset     # Reset database (drop all tables)
+npm run db:reset     # Reset database
 ```
-
-## 📖 Pages Overview
-
-- **Home (`/`)**: Landing page with setup instructions and features overview
-- **Dashboard (`/dashboard`)**: Protected user dashboard with profile information
-- **Chat (`/chat`)**: AI-powered chat interface using OpenAI (requires authentication)
 
 ## 🚀 Deployment
 
-### Deploy to Vercel (Recommended)
+### Deploy to Vercel
 
-1. Install the Vercel CLI globally:
-
+1. **Install Vercel CLI**
    ```bash
    npm install -g vercel
    ```
 
-2. Deploy your application:
-
+2. **Deploy**
    ```bash
    vercel --prod
    ```
 
-3. Follow the prompts to configure your deployment
-4. Add your environment variables when prompted or via the Vercel dashboard
+3. **Environment Variables**
+   
+   Add these to your Vercel dashboard:
+   - `POSTGRES_URL` - Production database URL
+   - `BETTER_AUTH_SECRET` - Secure random string (32+ characters)
+   - `GOOGLE_CLIENT_ID` - Google OAuth Client ID
+   - `GOOGLE_CLIENT_SECRET` - Google OAuth Client Secret
+   - `OPENAI_API_KEY` - OpenAI API key
+   - `OPENAI_MODEL` - AI model (e.g., gpt-4o-mini)
+   - `NEXT_PUBLIC_APP_URL` - Your production domain
 
-### Production Environment Variables
+## 📄 License
 
-Ensure these are set in your production environment:
-
-- `POSTGRES_URL` - Production PostgreSQL connection string
-- `BETTER_AUTH_SECRET` - Secure random 32+ character string
-- `GOOGLE_CLIENT_ID` - Google OAuth Client ID
-- `GOOGLE_CLIENT_SECRET` - Google OAuth Client Secret
-- `OPENAI_API_KEY` - OpenAI API key (optional)
-- `OPENAI_MODEL` - OpenAI model name (optional, defaults to gpt-5-mini)
-- `NEXT_PUBLIC_APP_URL` - Your production domain
-
-## 🎥 Tutorial Video
-
-Watch my comprehensive tutorial on how to use this agentic coding boilerplate to build AI-powered applications:
-
-<a href="https://youtu.be/T0zFZsr_d0Q" target="_blank" rel="noopener noreferrer">📺 YouTube Tutorial - Building with Agentic Coding Boilerplate</a>
+This project is licensed under the MIT License.
 
 ## 🤝 Contributing
 
-1. Fork this repository
+1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
 3. Commit your changes (`git commit -m 'Add amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🆘 Need Help?
-
-If you encounter any issues:
-
-1. Check the [Issues](https://github.com/leonvanzyl/agentic-coding-starter-kit/issues) section
-2. Review the documentation above
-3. Create a new issue with detailed information about your problem
-
 ---
 
-**Happy coding! 🚀**
-# FridgeAI deployment fix
+**Happy cooking! 🍳**
