@@ -3,7 +3,10 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useSession } from "@/lib/auth-client";
-import { ChefHat, Camera, Sparkles, Clock, Users, BookOpen } from "lucide-react";
+import { ChefHat, Camera, Sparkles } from "lucide-react";
+import { HeroHighlightDemo } from "@/components/demo/hero-highlight-demo";
+import { FileUploadDemo } from "@/components/demo/file-upload-demo";
+import { AnimatedPinDemo } from "@/components/demo/animated-pin-demo";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -11,37 +14,40 @@ export default function Home() {
   return (
     <main className="flex-1">
       {/* Hero Section */}
-      <section className="container mx-auto px-4 py-16 text-center">
-        <div className="max-w-4xl mx-auto space-y-8">
-          <div className="space-y-4">
-            <div className="flex justify-center">
-              <ChefHat className="h-16 w-16 text-primary" />
-            </div>
-            <h1 className="text-5xl font-bold tracking-tight">
-              Turn Your Fridge Into
-              <span className="text-primary block">Delicious Recipes</span>
-            </h1>
+      <section className="py-16">
+        <HeroHighlightDemo />
+        <div className="container mx-auto px-4 text-center mt-8">
+          <div className="max-w-4xl mx-auto space-y-8">
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Upload a photo of your fridge and let AI create personalized recipes 
               with the ingredients you already have. No more food waste, just great meals.
             </p>
-          </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            {session ? (
-              <Button asChild size="lg" className="text-lg px-8">
-                <Link href="/recipes">Start Cooking</Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              {session ? (
+                <Button asChild size="lg" className="text-lg px-8">
+                  <Link href="/recipes">Start Cooking</Link>
+                </Button>
+              ) : (
+                <Button asChild size="lg" className="text-lg px-8">
+                  <Link href="/recipes">Get Started</Link>
+                </Button>
+              )}
+              <Button variant="outline" size="lg" className="text-lg px-8">
+                See How It Works
               </Button>
-            ) : (
-              <Button asChild size="lg" className="text-lg px-8">
-                <Link href="/recipes">Get Started</Link>
-              </Button>
-            )}
-            <Button variant="outline" size="lg" className="text-lg px-8">
-              See How It Works
-            </Button>
+            </div>
           </div>
         </div>
+      </section>
+
+      {/* File Upload Section */}
+      <section className="container mx-auto px-4 py-16">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold mb-4">Upload Your Fridge Photo</h2>
+          <p className="text-muted-foreground">Take a photo and let AI work its magic</p>
+        </div>
+        <FileUploadDemo />
       </section>
 
       {/* Features Section */}
@@ -101,30 +107,8 @@ export default function Home() {
               Why Choose FridgeAI?
             </h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="p-6 border rounded-lg space-y-3">
-                <Clock className="h-8 w-8 text-primary" />
-                <h3 className="font-semibold text-lg">Save Time & Money</h3>
-                <p className="text-sm text-muted-foreground">
-                  No more wondering what to cook. Use what you have and reduce food waste.
-                </p>
-              </div>
-              
-              <div className="p-6 border rounded-lg space-y-3">
-                <BookOpen className="h-8 w-8 text-primary" />
-                <h3 className="font-semibold text-lg">Detailed Recipes</h3>
-                <p className="text-sm text-muted-foreground">
-                  Get complete recipes with ingredients, instructions, nutritional info, and difficulty levels.
-                </p>
-              </div>
-              
-              <div className="p-6 border rounded-lg space-y-3">
-                <Users className="h-8 w-8 text-primary" />
-                <h3 className="font-semibold text-lg">Easy Sharing</h3>
-                <p className="text-sm text-muted-foreground">
-                  Share your favorite recipes with friends and family via link, email, or PDF.
-                </p>
-              </div>
+            <div className="flex justify-center">
+              <AnimatedPinDemo />
             </div>
           </div>
         </div>

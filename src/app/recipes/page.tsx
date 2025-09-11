@@ -5,10 +5,11 @@ import { UserProfile } from "@/components/auth/user-profile";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Upload, Plus, Search, Filter, Clock, ChefHat, Users, Loader2 } from "lucide-react";
+import { Plus, Search, Filter, Clock, ChefHat, Users, Loader2 } from "lucide-react";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { FileUpload } from "@/components/ui/file-upload";
 
 interface Recipe {
   id: number;
@@ -88,10 +89,9 @@ export default function RecipesPage() {
     );
   }
 
-  const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      setSelectedFile(file);
+  const handleFileUpload = (files: File[]) => {
+    if (files && files.length > 0) {
+      setSelectedFile(files[0]);
     }
   };
 
@@ -145,10 +145,6 @@ export default function RecipesPage() {
       setCuisine("");
       setCookingTime("");
       
-      // Reset file input
-      const fileInput = document.getElementById("fridge-photo") as HTMLInputElement;
-      if (fileInput) fileInput.value = "";
-      
     } catch (error) {
       console.error("Error generating recipe:", error);
       alert("Failed to generate recipe. Please try again.");
@@ -192,29 +188,14 @@ export default function RecipesPage() {
             {/* File Upload */}
             <div className="space-y-2">
               <label className="text-sm font-medium">Upload Fridge Photo</label>
-              <div className="border-2 border-dashed border-muted-foreground/25 rounded-lg p-8 text-center hover:border-muted-foreground/50 transition-colors">
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleFileSelect}
-                  className="hidden"
-                  id="fridge-photo"
-                />
-                <label
-                  htmlFor="fridge-photo"
-                  className="cursor-pointer space-y-2 block"
-                >
-                  <Upload className="h-10 w-10 mx-auto text-muted-foreground" />
-                  <div>
-                    <p className="font-medium">
-                      {selectedFile ? selectedFile.name : "Click to upload fridge photo"}
-                    </p>
-                    <p className="text-sm text-muted-foreground">
-                      PNG, JPG up to 10MB
-                    </p>
-                  </div>
-                </label>
+              <div className="min-h-64">
+                <FileUpload onChange={handleFileUpload} />
               </div>
+              {selectedFile && (
+                <p className="text-sm text-muted-foreground">
+                  Selected: {selectedFile.name}
+                </p>
+              )}
             </div>
 
             {/* Preferences */}
