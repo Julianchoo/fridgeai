@@ -2,9 +2,12 @@
   "name": "fridgeai",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "22.x"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "pnpm run db:migrate && next build",
+    "build": "node --version && pnpm run db:migrate && next build",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
